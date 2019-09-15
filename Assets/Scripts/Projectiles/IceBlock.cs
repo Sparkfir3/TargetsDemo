@@ -16,7 +16,7 @@ public class IceBlock : ProjectileBase {
     protected override void OnTriggerEnter2D(Collider2D collision) {
         if(collision.CompareTag("Terrain") || collision.CompareTag("Target")) {
             Instantiate(iceBurst, transform.position, transform.rotation, transform.parent);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 

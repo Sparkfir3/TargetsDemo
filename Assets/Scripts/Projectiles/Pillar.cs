@@ -1,19 +1,16 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Pillar : MonoBehaviour {
 
-    public int num;
-    public bool left;
-
-    private void Start() {
-        
-    }
-
-    private IEnumerable Burst() {
-
-        yield return null;
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.CompareTag("Terrain")) {
+            Destroy(gameObject);
+        } else if(collision.CompareTag("Target")) {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
     }
 
 }

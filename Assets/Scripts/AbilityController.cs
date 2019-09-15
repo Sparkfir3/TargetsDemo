@@ -20,10 +20,10 @@ public class AbilityController : MonoBehaviour {
         boomerang = Resources.Load<GameObject>("Boomerang");
         pillarProjectile = Resources.Load<GameObject>("Pillar Projectile");
         fireball = Resources.Load<GameObject>("Fireball");
-        selectionPos = GameManager.gm.selectArrow.GetComponent<RectTransform>();
     }
 
     private void Start() {
+        selectionPos = GameManager.gm.selectArrow.GetComponent<RectTransform>();
         UpdateAllUI();
     }
 
