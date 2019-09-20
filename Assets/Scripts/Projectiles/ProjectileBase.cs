@@ -13,11 +13,11 @@ public class ProjectileBase : MonoBehaviour {
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.CompareTag("Terrain"))
-            Destroy(this.gameObject);
+        if(collision.CompareTag("Terrain") && collision.name != "Projectiles Only")
+            Destroy(gameObject);
         else if(collision.CompareTag("Target")) {
             Destroy(collision.gameObject);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 

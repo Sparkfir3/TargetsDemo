@@ -23,6 +23,7 @@ public class AbilityController : MonoBehaviour {
     }
 
     private void Start() {
+        abilityNum = GameManager.gm.menuCanvas.GetComponent<CanvasManager>().abilityNum;
         selectionPos = GameManager.gm.selectArrow.GetComponent<RectTransform>();
         UpdateAllUI();
     }

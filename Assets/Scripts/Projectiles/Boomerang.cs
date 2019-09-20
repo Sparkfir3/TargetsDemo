@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +21,7 @@ public class Boomerang : ProjectileBase {
         if(!returning && percentTraveled >= 1f)
             BeginReturn();
         else if(returning && percentTraveled >= 1.5f)
-            Destroy(this.gameObject);
+            Destroy(gameObject);
     }
 
     private void LateUpdate() {
@@ -42,10 +42,10 @@ public class Boomerang : ProjectileBase {
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.CompareTag("Terrain")) {
+        if(collision.CompareTag("Terrain") && collision.name != "Projectiles Only") {
             if(returning) {
                 if(returnBuffer >= 0.1f)
-                    Destroy(this.gameObject);
+                    Destroy(gameObject);
             } else {
                 returning = true;
                 percentTraveled = 1 - percentTraveled;
@@ -54,7 +54,7 @@ public class Boomerang : ProjectileBase {
             Destroy(collision.gameObject);
             if(returning) {
                 if(returnBuffer >= 0.1f)
-                    Destroy(this.gameObject);
+                    Destroy(gameObject);
             } else {
                 returning = true;
                 percentTraveled = 1 - percentTraveled;

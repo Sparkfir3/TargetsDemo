@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingTarget : MonoBehaviour {
+public class MovingTarget : Target {
 
     public Transform pos1, pos2;
     public float delay, moveTime;

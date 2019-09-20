@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager gm;
-    public GameObject menuCanvas, pauseMenu, selectArrow;
+    public GameObject menuCanvas;
+
+    [HideInInspector] public GameObject pauseMenu, selectArrow;
 
     private bool isPaused;
 
@@ -17,6 +19,8 @@ public class GameManager : MonoBehaviour {
             DontDestroyOnLoad(menuCanvas);
             pauseMenu.SetActive(false);
             isPaused = false;
+            pauseMenu = menuCanvas.GetComponent<CanvasManager>().pauseMenu;
+            selectArrow = menuCanvas.GetComponent<CanvasManager>().selectArrow;
         } else {
             Destroy(menuCanvas.gameObject);
             Destroy(this.gameObject);

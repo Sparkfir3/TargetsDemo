@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public float moveSpeed, jumpHeight, wallJumpHeight, /*wallSlideSpeed, */baseGrav, shortHopGrav, fallGrav;
+    public float moveSpeed, jumpHeight, wallJumpHeight, /*wallSlideSpeed, */ baseGrav, shortHopGrav, fallGrav, floatGrav;
     public LayerMask terrainMask;
+
+    [HideInInspector] public bool floating = false;
 
     private float groundedSkin = 0.05f;
     private int isWallJumping = 0; // 0 = false, 1 = left, 2 = right
@@ -70,12 +72,15 @@ public class PlayerController : MonoBehaviour {
         // Apply
         rb.velocity = movement;
         // Gravity --------------------------------------------------
-        if(rb.velocity.y < 0)
-            rb.gravityScale = fallGrav;
-        else if(rb.velocity.y > 0.05 && !Input.GetButton("Jump"))
-            rb.gravityScale = shortHopGrav;
-        else
-            rb.gravityScale = baseGrav;
+        if(!floating) {
+            if(rb.velocity.y < 0)
+                rb.gravityScale = fallGrav;
+            else if(rb.velocity.y > 0.05 && !Input.GetButton("Jump"))
+                rb.gravityScale = shortHopGrav;
+            else
+                rb.gravityScale = baseGrav;
+        } else
+            rb.gravityScale = -floatGrav;
     }
 
     private IEnumerator WallJump(bool left) {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pillar : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.CompareTag("Terrain")) {
+        if(collision.CompareTag("Terrain") && collision.name != "Projectiles Only") {
             Destroy(gameObject);
         } else if(collision.CompareTag("Target")) {
             Destroy(collision.gameObject);
