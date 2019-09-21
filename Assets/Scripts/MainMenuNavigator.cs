@@ -1,7 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenuNavigator : MonoBehaviour {
 
@@ -52,6 +53,17 @@ public class MainMenuNavigator : MonoBehaviour {
         mainMenu.gameObject.SetActive(false);
         creditsMenu.gameObject.SetActive(true);
         currentMenu = 3;
+    }
+
+    public void LoadScene(string scene) {
+        try {
+            GameManager.isPaused = false;
+            Time.timeScale = 1;
+            GameManager.gm.menuCanvas.SetActive(true);
+            SceneManager.LoadScene(scene);
+        } catch {
+            Debug.LogError("Attempted to load invalid scene: " + scene);
+        }
     }
 
 }

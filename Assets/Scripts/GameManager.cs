@@ -8,22 +8,24 @@ public class GameManager : MonoBehaviour {
     public static GameManager gm;
     public GameObject menuCanvas;
 
-    [HideInInspector] public GameObject pauseMenu, selectArrow;
+    [HideInInspector] public GameObject pauseMenu, selectArrow, winScreen;
 
-    private bool isPaused;
+    public static int currentLevel = 0;
+    public static bool isPaused, hasWon = false;
 
     private void Awake() {
         if(gm == null) {
             gm = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
             DontDestroyOnLoad(menuCanvas);
             pauseMenu.SetActive(false);
             isPaused = false;
             pauseMenu = menuCanvas.GetComponent<CanvasManager>().pauseMenu;
             selectArrow = menuCanvas.GetComponent<CanvasManager>().selectArrow;
+            winScreen = menuCanvas.GetComponent<CanvasManager>().winScreen;
         } else {
             Destroy(menuCanvas.gameObject);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -34,6 +36,16 @@ public class GameManager : MonoBehaviour {
             else
                 PauseGame();
         }
+        if(TargetManager.canWin) {
+            if(!hasWon) {
+                TargetManager.canWin = false;
+                hasWon = true;
+                TargetManager.winBuffer = 0;
+                Win();
+            }
+        }/* else {
+            winScreen.SetActive(false);
+        }*/
     }
 
     public void LoadScene(string scene) {
@@ -67,6 +79,30 @@ public class GameManager : MonoBehaviour {
             return isPaused;
         }
         set {}
+    }
+
+    public void Win() {
+        PauseGame();
+        pauseMenu.SetActive(false);
+        winScreen.SetActive(true);
+        //Debug.Log("win");
+    }
+
+    public void NextLevel() {
+        //Debug.Log("next");
+        TargetManager.winBuffer = 0;
+        TargetManager.canWin = false;
+        winScreen.SetActive(false);
+        UnpauseGame();
+        try {
+            if(SceneManager.GetActiveScene().buildIndex == 16)
+                SceneManager.LoadScene("MainMenu");
+            else
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        } catch {
+            SceneManager.LoadScene("MainMenu");
+        }
+        hasWon = false;
     }
 
     public void ExitGame() {
