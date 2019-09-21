@@ -42,12 +42,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Terrain
+    uniqueID: 3798673053
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Target
+    uniqueID: 2512387455
+    locked: 0
   - name: Player
     uniqueID: 633375309
-    locked: 0
-  - name: Terrain
-    uniqueID: 3798673053
     locked: 0

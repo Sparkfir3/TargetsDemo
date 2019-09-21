@@ -1623,7 +1623,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level 2
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -4801,6 +4801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1531420412993356, guid: 491bc2577dbbb9d4e84babe828f301f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224618539922336712, guid: 491bc2577dbbb9d4e84babe828f301f3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4921,6 +4925,36 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 634892366}
+    - target: {fileID: 1185516571232712745, guid: 491bc2577dbbb9d4e84babe828f301f3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 634892366}
+    - target: {fileID: 1185516571232712745, guid: 491bc2577dbbb9d4e84babe828f301f3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292322255814373679, guid: 491bc2577dbbb9d4e84babe828f301f3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 634892366}
+    - target: {fileID: 6292322255814373679, guid: 491bc2577dbbb9d4e84babe828f301f3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8032304147680396300, guid: 491bc2577dbbb9d4e84babe828f301f3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 634892366}
+    - target: {fileID: 8032304147680396300, guid: 491bc2577dbbb9d4e84babe828f301f3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 491bc2577dbbb9d4e84babe828f301f3, type: 3}
 --- !u!1 &1751477030
