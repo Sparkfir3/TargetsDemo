@@ -20,7 +20,7 @@ public class Boomerang : ProjectileBase {
         percentTraveled += (startVelocity.magnitude * Time.deltaTime) / maxDistance;
         if(!returning && percentTraveled >= 1f)
             BeginReturn();
-        else if(returning && percentTraveled >= 1.5f)
+        else if(returning && percentTraveled >= 2.5f)
             Destroy(gameObject);
     }
 
@@ -42,7 +42,7 @@ public class Boomerang : ProjectileBase {
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.CompareTag("Terrain") && collision.name != "Projectiles Only") {
+        if(collision.CompareTag("Terrain") && !collision.name.Contains("Projectiles Only")) {
             if(returning) {
                 if(returnBuffer >= 0.1f)
                     Destroy(gameObject);

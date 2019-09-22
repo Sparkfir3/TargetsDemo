@@ -13,7 +13,7 @@ public class ProjectileBase : MonoBehaviour {
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.CompareTag("Terrain") && collision.name != "Projectiles Only")
+        if(collision.CompareTag("Terrain") && !collision.name.Contains("Projectiles Only"))
             Destroy(gameObject);
         else if(collision.CompareTag("Target")) {
             Destroy(collision.gameObject);
