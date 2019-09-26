@@ -16,6 +16,7 @@ public class PillarProjectile : ProjectileBase {
 
     protected override void OnTriggerEnter2D(Collider2D collision) {
         if(collision.CompareTag("Terrain") && collision.name != "Projectiles Only") {
+            Instantiate(pillar, transform.position + new Vector3(0, -0.5f, 0), Quaternion.identity, transform.parent);
             Destroy(gameObject);
         } else if(collision.CompareTag("Target")) {
             Destroy(collision.gameObject);
