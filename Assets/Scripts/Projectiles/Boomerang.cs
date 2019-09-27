@@ -44,7 +44,7 @@ public class Boomerang : ProjectileBase {
     protected override void OnTriggerEnter2D(Collider2D collision) {
         if(collision.CompareTag("Terrain") && !collision.name.Contains("Projectiles Only")) {
             if(returning) {
-                if(returnBuffer >= 0.1f)
+                if(returnBuffer >= 0.1f && !collision.name.Contains("Boomerang Only"))
                     Destroy(gameObject);
             } else {
                 returning = true;
