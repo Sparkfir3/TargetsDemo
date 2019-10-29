@@ -10,9 +10,11 @@ public class AbilityController : MonoBehaviour {
     public Text[] abilityNum = new Text[5];
     public float projectileSpeed;
 
-    private int currentAbility;
     private GameObject laser, iceBlock, boomerang, pillarProjectile, fireball;
     private RectTransform selectionPos;
+
+    [HideInInspector] public int currentAbility;
+    [HideInInspector] public Vector3 launchVelocity;
 
     private void Awake() {
         laser = Resources.Load<GameObject>("Laser");
@@ -46,46 +48,46 @@ public class AbilityController : MonoBehaviour {
         else if(Input.mouseScrollDelta.y < 0 || Input.GetButtonDown("Scroll Right"))
             UpdateSelection(currentAbility + 1);
         // Attack --------------------------------------------------------------------------------
+        launchVelocity = Vector3.Normalize(GetMousePos() - transform.position);
         if(Input.GetButtonDown("Fire") && !GameManager.gm.IsPaused) {
-            Vector3 vel = Vector3.Normalize(GetMousePos() - transform.position);
             switch(currentAbility) {
                 case 0:
                     if(abilityCount[0] != 0) {
                         // Laser
-                        GameObject laserObj = Instantiate(laser, GetLaunchPosition(vel), GetLaunchRotation(vel), parent);
-                        laserObj.GetComponent<Rigidbody2D>().velocity = vel * projectileSpeed;
+                        GameObject laserObj = Instantiate(laser, GetLaunchPosition(launchVelocity), GetLaunchRotation(launchVelocity), parent);
+                        laserObj.GetComponent<Rigidbody2D>().velocity = launchVelocity * projectileSpeed;
                         UpdateSingleUI(0, -1);
                     }
                     break;
                 case 1:
                     if(abilityCount[1] != 0) {
                         // Ice Burst
-                        GameObject iceObj = Instantiate(iceBlock, GetLaunchPosition(vel), GetLaunchRotation(vel), parent);
-                        iceObj.GetComponent<Rigidbody2D>().velocity = vel * projectileSpeed * 0.6f;
+                        GameObject iceObj = Instantiate(iceBlock, GetLaunchPosition(launchVelocity), GetLaunchRotation(launchVelocity), parent);
+                        iceObj.GetComponent<Rigidbody2D>().velocity = launchVelocity * projectileSpeed * 0.6f;
                         UpdateSingleUI(1, -1);
                     }
                     break;
                 case 2:
                     if(abilityCount[2] != 0) {
                         // Boomerang
-                        GameObject boomObj = Instantiate(boomerang, GetLaunchPosition(vel), GetLaunchRotation(vel), parent);
-                        boomObj.GetComponent<Rigidbody2D>().velocity = vel * projectileSpeed * 0.5f;
+                        GameObject boomObj = Instantiate(boomerang, GetLaunchPosition(launchVelocity), GetLaunchRotation(launchVelocity), parent);
+                        boomObj.GetComponent<Rigidbody2D>().velocity = launchVelocity * projectileSpeed * 0.5f;
                         UpdateSingleUI(2, -1);
                     }
                     break;
                 case 3:
                     if(abilityCount[3] != 0) {
                         // Pillars
-                        GameObject pillarObj = Instantiate(pillarProjectile, GetLaunchPosition(vel), GetLaunchRotation(vel), parent);
-                        pillarObj.GetComponent<Rigidbody2D>().velocity = vel * projectileSpeed * 0.6f;
+                        GameObject pillarObj = Instantiate(pillarProjectile, GetLaunchPosition(launchVelocity), GetLaunchRotation(launchVelocity), parent);
+                        pillarObj.GetComponent<Rigidbody2D>().velocity = launchVelocity * projectileSpeed * 0.6f;
                         UpdateSingleUI(3, -1);
                     }
                     break;
                 case 4:
                     if(abilityCount[4] != 0) {
                         // Explosion
-                        GameObject fireballObj = Instantiate(fireball, GetLaunchPosition(vel), GetLaunchRotation(vel), parent);
-                        fireballObj.GetComponent<Rigidbody2D>().velocity = vel * projectileSpeed * 0.8f;
+                        GameObject fireballObj = Instantiate(fireball, GetLaunchPosition(launchVelocity), GetLaunchRotation(launchVelocity), parent);
+                        fireballObj.GetComponent<Rigidbody2D>().velocity = launchVelocity * projectileSpeed * 0.8f;
                         UpdateSingleUI(4, -1);
                     }
                     break;

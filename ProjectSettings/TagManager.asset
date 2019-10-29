@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: AimGuide
+    uniqueID: 3329310569
+    locked: 0
   - name: Terrain
     uniqueID: 3798673053
     locked: 0
