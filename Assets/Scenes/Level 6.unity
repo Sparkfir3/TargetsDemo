@@ -2608,6 +2608,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1329192624}
+  zoomOutPos: {x: 4.8, y: 4, z: 0}
+  zoomOutSize: 9
 --- !u!1001 &1847615246
 PrefabInstance:
   m_ObjectHideFlags: 0

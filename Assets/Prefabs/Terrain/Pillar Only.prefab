@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 440311397}
   - component: {fileID: 440311399}
   - component: {fileID: 440311398}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Pillar Only
   m_TagString: Terrain
   m_Icon: {fileID: 0}

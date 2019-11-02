@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4054978673604607756}
   - component: {fileID: 4054978673604607754}
   - component: {fileID: 4054978673604607755}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Projectiles Only
   m_TagString: Terrain
   m_Icon: {fileID: 0}

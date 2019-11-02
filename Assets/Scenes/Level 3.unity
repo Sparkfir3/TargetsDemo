@@ -3069,6 +3069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1329192624}
+  zoomOutPos: {x: 0.75, y: 6.5, z: 0}
+  zoomOutSize: 11
 --- !u!4 &1820406152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4062313708933962, guid: bb3ede94b0507c24a8800139c3da0cc9,

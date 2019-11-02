@@ -55,11 +55,11 @@ public class AimGuide : MonoBehaviour {
             line.SetPosition(1, abilities.launchVelocity * 100f);
         }
         if(renderBack) {
-            hit = Physics2D.Raycast(player.position, abilities.launchVelocity * -1f, 10f, LayerMask.GetMask("Terrain", "Target"));
+            hit = Physics2D.Raycast(player.position, abilities.launchVelocity * -1f, 25f, LayerMask.GetMask("Terrain", "Target"));
             if(hit.collider != null) {
                 line.SetPosition(0, hit.point);
             } else {
-                line.SetPosition(0, abilities.launchVelocity * -10f);
+                line.SetPosition(0, player.position + (abilities.launchVelocity * -25f));
             }
         } else
             line.SetPosition(0, player.position);

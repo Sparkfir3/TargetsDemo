@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float moveSpeed, jumpHeight, wallJumpHeight, /*wallSlideSpeed, */ baseGrav, shortHopGrav, fallGrav, floatGrav;
-    public LayerMask terrainMask;
 
     [HideInInspector] public bool floating = false;
 
@@ -23,8 +22,8 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
         // Check for Walls --------------------------------------------------
-        wallLeft = Physics2D.OverlapBox((Vector2)transform.position + (Vector2.left * playerSize.x) / 2f, new Vector2(groundedSkin, playerSize.y * 0.975f), 0f, terrainMask);
-        wallRight = Physics2D.OverlapBox((Vector2)transform.position + (Vector2.right * playerSize.x) / 2f, new Vector2(groundedSkin, playerSize.y * 0.975f), 0f, terrainMask);
+        wallLeft = Physics2D.OverlapBox((Vector2)transform.position + (Vector2.left * playerSize.x) / 2f, new Vector2(groundedSkin, playerSize.y * 0.975f), 0f, LayerMask.GetMask("Terrain", "ProjOnly"));
+        wallRight = Physics2D.OverlapBox((Vector2)transform.position + (Vector2.right * playerSize.x) / 2f, new Vector2(groundedSkin, playerSize.y * 0.975f), 0f, LayerMask.GetMask("Terrain", "ProjOnly"));
         // Jumping --------------------------------------------------
         if(Input.GetButtonDown("Jump"))
             jump = true;
@@ -56,7 +55,7 @@ public class PlayerController : MonoBehaviour {
             }
             jump = false;
         } else
-            grounded = Physics2D.OverlapBox((Vector2)transform.position + (Vector2.down * playerSize.y) / 2f, new Vector2(playerSize.x * 0.975f, groundedSkin), 0f, terrainMask);
+            grounded = Physics2D.OverlapBox((Vector2)transform.position + (Vector2.down * playerSize.y) / 2f, new Vector2(playerSize.x * 0.975f, groundedSkin), 0f, LayerMask.GetMask("Terrain", "ProjOnly"));
         // Apply Wall Jump
         if(isWallJumping == 1) { // Left
             movement.x = moveSpeed;
