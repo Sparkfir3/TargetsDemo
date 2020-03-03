@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 
     public static int currentLevel = 0;
     public static bool isPaused, hasWon = false;
+    private float resetTimer;
 
     private void Awake() {
         if(gm == null) {
@@ -46,6 +47,16 @@ public class GameManager : MonoBehaviour {
         }/* else {
             winScreen.SetActive(false);
         }*/
+
+        // Reset Level
+        if(Input.GetButton("Reset")) {
+            resetTimer += Time.deltaTime;
+            if(resetTimer >= 1f) {
+                ResetLevel();
+                resetTimer = -100f;
+            }
+        } else
+            resetTimer = 0;
     }
 
     public void LoadScene(string scene) {
@@ -86,6 +97,10 @@ public class GameManager : MonoBehaviour {
         pauseMenu.SetActive(false);
         winScreen.SetActive(true);
         //Debug.Log("win");
+    }
+
+    public void ResetLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void NextLevel() {
