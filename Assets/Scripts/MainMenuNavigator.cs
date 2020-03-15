@@ -59,6 +59,7 @@ public class MainMenuNavigator : MonoBehaviour {
         if(Application.CanStreamedLevelBeLoaded(button.name)) {
             GameManager.isPaused = false;
             Time.timeScale = 1;
+            //GameManager.gm.OnLoadNewScene();
             GameManager.gm.menuCanvas.SetActive(true);
             SceneManager.LoadScene(button.name);
         } else {

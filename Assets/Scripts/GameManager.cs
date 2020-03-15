@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour {
 
     private void Update() {
         if(Input.GetButtonDown("Pause")) {
-            if(isPaused)
+            if(IsPaused)
                 UnpauseGame();
             else
                 PauseGame();
@@ -61,12 +61,7 @@ public class GameManager : MonoBehaviour {
 
     public void LoadScene(string scene) {
         if(Application.CanStreamedLevelBeLoaded(scene)) {
-            if(isPaused)
-                UnpauseGame();
-            if(scene.Equals("MainMenu"))
-                menuCanvas.SetActive(false);
-            else
-                menuCanvas.SetActive(true);
+            OnLoadNewScene();
             SceneManager.LoadScene(scene);
         } else {
             Debug.LogError("Attempted to load invalid scene: " + scene);
@@ -107,9 +102,8 @@ public class GameManager : MonoBehaviour {
         //Debug.Log("next");
         TargetManager.winBuffer = 0;
         TargetManager.canWin = false;
-        winScreen.SetActive(false);
         UnpauseGame();
-        hasWon = false;
+        OnLoadNewScene();
         if(Application.CanStreamedLevelBeLoaded(SceneManager.GetActiveScene().buildIndex + 1))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         else
@@ -118,6 +112,18 @@ public class GameManager : MonoBehaviour {
 
     public void ExitGame() {
         Application.Quit();
+    }
+
+    public void OnLoadNewScene() {
+        if(IsPaused)
+            UnpauseGame();
+        if(SceneManager.GetActiveScene().name.Equals("MainMenu"))
+            menuCanvas.SetActive(false);
+        else
+            menuCanvas.SetActive(true);
+        winScreen.SetActive(false);
+        hasWon = false;
+        selectArrow.GetComponent<RectTransform>().localPosition = new Vector2(15, 42.5f);
     }
 
 }
