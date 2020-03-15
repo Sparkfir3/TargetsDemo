@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoadScene(string scene) {
-        try {
+        if(Application.CanStreamedLevelBeLoaded(scene)) {
             if(isPaused)
                 UnpauseGame();
             if(scene.Equals("MainMenu"))
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour {
             else
                 menuCanvas.SetActive(true);
             SceneManager.LoadScene(scene);
-        } catch {
+        } else {
             Debug.LogError("Attempted to load invalid scene: " + scene);
         }
     }
@@ -109,15 +109,11 @@ public class GameManager : MonoBehaviour {
         TargetManager.canWin = false;
         winScreen.SetActive(false);
         UnpauseGame();
-        try {
-            if(SceneManager.GetActiveScene().buildIndex == 16)
-                SceneManager.LoadScene("MainMenu");
-            else
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        } catch {
-            SceneManager.LoadScene("MainMenu");
-        }
         hasWon = false;
+        if(Application.CanStreamedLevelBeLoaded(SceneManager.GetActiveScene().buildIndex + 1))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else
+            SceneManager.LoadScene("MainMenu");
     }
 
     public void ExitGame() {

@@ -55,7 +55,18 @@ public class MainMenuNavigator : MonoBehaviour {
         currentMenu = 3;
     }
 
-    public void LoadScene(string scene) {
+    public void LoadScene(GameObject button) {
+        if(Application.CanStreamedLevelBeLoaded(button.name)) {
+            GameManager.isPaused = false;
+            Time.timeScale = 1;
+            GameManager.gm.menuCanvas.SetActive(true);
+            SceneManager.LoadScene(button.name);
+        } else {
+            Debug.LogError("Attempted to load invalid scene: " + button.name);
+        }
+    }
+
+    /*public void LoadScene(string scene) {
         try {
             GameManager.isPaused = false;
             Time.timeScale = 1;
@@ -64,6 +75,6 @@ public class MainMenuNavigator : MonoBehaviour {
         } catch {
             Debug.LogError("Attempted to load invalid scene: " + scene);
         }
-    }
+    }*/
 
 }
