@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour {
 
     public void LoadScene(string scene) {
         if(Application.CanStreamedLevelBeLoaded(scene)) {
-            OnLoadNewScene();
+            OnLoadNewScene(scene);
             SceneManager.LoadScene(scene);
         } else {
             Debug.LogError("Attempted to load invalid scene: " + scene);
@@ -103,27 +103,33 @@ public class GameManager : MonoBehaviour {
         TargetManager.winBuffer = 0;
         TargetManager.canWin = false;
         UnpauseGame();
-        OnLoadNewScene();
-        if(Application.CanStreamedLevelBeLoaded(SceneManager.GetActiveScene().buildIndex + 1))
+        if(Application.CanStreamedLevelBeLoaded(SceneManager.GetActiveScene().buildIndex + 1)) {
+            OnLoadNewScene();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        else
+        }  else {
+            OnLoadNewScene("MainMenu");
             SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void ExitGame() {
         Application.Quit();
     }
 
-    public void OnLoadNewScene() {
+    public void OnLoadNewScene(string scene) {
         if(IsPaused)
             UnpauseGame();
-        if(SceneManager.GetActiveScene().name.Equals("MainMenu"))
-            menuCanvas.SetActive(false);
-        else
-            menuCanvas.SetActive(true);
         winScreen.SetActive(false);
         hasWon = false;
         selectArrow.GetComponent<RectTransform>().localPosition = new Vector2(15, 42.5f);
+        if(scene.Equals("MainMenu"))
+            menuCanvas.SetActive(false);
+        else
+            menuCanvas.SetActive(true);
+    }
+
+    public void OnLoadNewScene() {
+        OnLoadNewScene("");
     }
 
 }
