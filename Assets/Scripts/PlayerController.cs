@@ -80,6 +80,13 @@ public class PlayerController : MonoBehaviour {
                 rb.gravityScale = baseGrav;
         } else
             rb.gravityScale = -floatGrav;
+        // Fix if player stuck in wall --------------------------------------------------
+        // Ideally you'd stop the player from falling the moment the hit they floor so they can't clip through but oh well
+        Debug.DrawRay(transform.position, Vector3.up, Color.black, 1f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up, 0.501f, LayerMask.GetMask("Terrain", "ProjOnly"));
+        if(hit.collider != null) {
+            transform.position += new Vector3(0, 1);
+        }
     }
 
     private IEnumerator WallJump(bool left) {
