@@ -1,2 +1,5 @@
 # Targets Demo
-A small game featuring 15 levels, where the goal is to break all the targets using your limited resources.
+A small puzzle-platformer about breaking targets with limited-use abilities.
+
+
+Available on <a href="https://sparkfir3.itch.io/targets-demo">itch.io</a>
